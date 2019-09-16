@@ -1,0 +1,62 @@
+- WorkoutDetail
+    + ExerciseDetail
+        1 Exercise
+        - Sets
+        - Reps
+        - Weight
+    - Datetime
+
+- WorkoutSkeleton
+    + ExerciseDetail
+        1 Exercise
+            - Name
+            - IsSearchable
+        - Sets
+        - Reps
+        - Weight
+
+- Schedule
+    + Workout
+
+Exercise
+    - ExerciseId INT
+    - Name VARCHAR(500)
+    - IsSearchable Bool
+    - CreatedOn DateTime
+    - CreatedById NULL  
+    - Notes NULL
+
+ExerciseDetail (CompletedExercise)
+    - ExerciseDetailId INT 
+    - WorkoutDetailId INT
+    - ExerciseId INT FK Exercise
+    - Sets INT 
+    - Reps INT 
+    - Weight INT 
+    - OrderId NOT NULL
+    - CreatedOn DateTime
+    - CreatedById NULL    
+
+ExerciseDetailSkeleton
+    - ExerciseDetailSkeletonId INT 
+    - WorkoutSkeletonId INT
+    - ExerciseId INT FK Exercise
+    - Sets INT NULL
+    - Reps INT NULL
+    - Weight INT NULL
+    - OrderId NOT NULL
+    - CreatedOn DateTime 
+    - CreatedById NULL
+
+WorkoutDetail
+    - WorkoutDetailId INT
+    - Name VARCHAR(500) 
+    - CompletedOn DateTime NULL
+    - CreatedOn DateTime
+    - CreatedById NULL  
+
+WorkoutSkeleton
+    - WorkoutSkeletonId INT
+    - Name VARCHAR(500) 
+    - CreatedOn NULL
+    - CreatedById NULL  
