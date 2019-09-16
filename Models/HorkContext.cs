@@ -24,7 +24,7 @@ namespace Hork_Api.Models
                 // refs https://docs.microsoft.com/en-us/ef/core/modeling/relational/tables#conventions
                 modelBuilder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
             }
-            
+            // TODO generalize this V            
             modelBuilder.Entity<Exercise>().UseTimestampedProperty();
         }
 
