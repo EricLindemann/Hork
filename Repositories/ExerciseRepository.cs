@@ -22,8 +22,13 @@ namespace Hork_Api.Repositories
             return await _context.Exercises.FindAsync(id);
         }
 
-        public async Task<object> AddExercise(Exercise exercise) {
+        public async Task<int> AddExercise(Exercise exercise) {
             _context.Exercises.Add(exercise);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateExercise(Exercise exercise) {
+            _context.Entry(exercise).State = EntityState.Modified;
             return await _context.SaveChangesAsync();
         }
     }

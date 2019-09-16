@@ -45,5 +45,16 @@ namespace Hork_Api.Controllers
             await _exerciseRepository.AddExercise(exercise);
             return CreatedAtAction(nameof(GetExercises), new { id = exercise.ExerciseId }, exercise);        
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutExercise(long id, Exercise exercise)
+        {
+            if (id != exercise.ExerciseId)
+            {
+                return BadRequest();
+            }
+            await _exerciseRepository.UpdateExercise(exercise);
+            return NoContent();
+        }
     }
 }
