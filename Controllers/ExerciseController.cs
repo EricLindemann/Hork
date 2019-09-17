@@ -1,60 +1,34 @@
+using Hork_Api.Models.Entities;
+using Hork_Api.Models.ViewModels;
+using Hork_Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hork_Api.Models;
-using Hork_Api.Repositories;
 
 namespace Hork_Api.Controllers
 {
-    [Route("api/exercise")]
+    [Route("api/Exercise")]
     [ApiController]
     public class ExerciseController : ControllerBase
     {
-        private readonly ExerciseRepository _exerciseRepository;
-
-        public ExerciseController(
-            ExerciseRepository exerciseRepository)
-        {
+        private ExerciseRepository _exerciseRepository;
+        public ExerciseController(ExerciseRepository exerciseRepository) {
             _exerciseRepository = exerciseRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Exercise>>> GetExercises()
-        {
-            return await _exerciseRepository.GetExercises();
-        }
-
         [HttpGet("{id}")]
-        public async Task<ActionResult<Exercise>> GetExercise(int id)
+        public async Task<ActionResult<ExerciseVM>> GetExercise(int id)
         {
-            var exercise = await _exerciseRepository.GetById(id);
+            var exerciseModel = await _exerciseRepository.GetById(id);
 
-            if (exercise == null)
+            if (exerciseModel == null)
             {
                 return NotFound();
             }
 
-            return exercise;
+            return exerciseModel;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Exercise>> PostExercises(Exercise exercise)
-        {
-            await _exerciseRepository.AddExercise(exercise);
-            return CreatedAtAction(nameof(GetExercises), new { id = exercise.ExerciseId }, exercise);        
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutExercise(long id, Exercise exercise)
-        {
-            if (id != exercise.ExerciseId)
-            {
-                return BadRequest();
-            }
-            await _exerciseRepository.UpdateExercise(exercise);
-            return NoContent();
-        }
     }
 }

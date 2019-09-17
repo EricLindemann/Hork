@@ -1,4 +1,4 @@
-- WorkoutDetail
+- Workout
     + ExerciseDetail
         1 Exercise
         - Sets
@@ -28,7 +28,7 @@ Exercise
 
 ExerciseDetail (CompletedExercise)
     - ExerciseDetailId INT 
-    - WorkoutDetailId INT
+    - WorkoutId INT
     - ExerciseId INT FK Exercise
     - Sets INT 
     - Reps INT 
@@ -48,8 +48,8 @@ ExerciseDetailSkeleton
     - CreatedOn DateTime 
     - CreatedById NULL
 
-WorkoutDetail
-    - WorkoutDetailId INT
+Workout
+    - WorkoutId INT
     - Name VARCHAR(500) 
     - CompletedOn DateTime NULL
     - CreatedOn DateTime

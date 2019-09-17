@@ -13,8 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
-using Hork_Api.Models;
+using Hork_Api.Models.Entities;
 using Hork_Api.Repositories;
+using Newtonsoft.Json;
 
 namespace Hork_Api
 {
@@ -35,6 +36,12 @@ namespace Hork_Api
                 options.UseMySql(Configuration.GetValue<string>("ConnectionString:DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = 
+                                        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+            services.AddTransient<ExerciseDetailRepository, ExerciseDetailRepository>();
             services.AddTransient<ExerciseRepository, ExerciseRepository>();
         }
 

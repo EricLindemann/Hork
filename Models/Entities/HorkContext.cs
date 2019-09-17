@@ -2,9 +2,10 @@ extern alias MySqlConnectorAlias;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;
+using Microsoft.EntityFrameworkCore.Proxies;
 using Hork_Api.Helpers;
 
-namespace Hork_Api.Models
+namespace Hork_Api.Models.Entities
 {
     public class HorkContext : DbContext
     {
@@ -25,6 +26,8 @@ namespace Hork_Api.Models
                 modelBuilder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
             }
             // TODO generalize this V            
+            modelBuilder.Entity<ExerciseDetail>().UseTimestampedProperty();
+            modelBuilder.Entity<Workout>().UseTimestampedProperty();
             modelBuilder.Entity<Exercise>().UseTimestampedProperty();
         }
 
@@ -32,6 +35,12 @@ namespace Hork_Api.Models
             return new MySqlConnectorAlias::MySql.Data.MySqlClient.MySqlConnection(ConnectionString);
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder
+                .UseLazyLoadingProxies();
+
+        public DbSet<ExerciseDetail> ExerciseDetails { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
     }
 }
