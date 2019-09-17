@@ -1,4 +1,6 @@
 using Hork_Api.Entities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hork_Api.Models
 {
@@ -13,6 +15,7 @@ namespace Hork_Api.Models
             Name = exercise.ExerciseDetail.Name;
             IsSearchable = exercise.ExerciseDetail.IsSearchable;
             OrderId = exercise.OrderId;
+            ExerciseSets = exercise.ExerciseSets.Select(x => new ExerciseSetModel(x)).ToList();
         }
         public int ExerciseId { get; set; }
         public int ExerciseDetailId { get; set; }
@@ -21,5 +24,6 @@ namespace Hork_Api.Models
         public string WorkoutName { get; set; }
         public bool IsSearchable { get; set; }
         public int OrderId { get; set; }
+        public List<ExerciseSetModel> ExerciseSets { get; set; }
     }
 }

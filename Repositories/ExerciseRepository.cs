@@ -17,6 +17,7 @@ namespace Hork_Api.Repositories
                 .Where(x => x.ExerciseId == id)
                 .Include(x => x.Workout)
                 .Include(x => x.ExerciseDetail)
+                .Include(x => x.ExerciseSets)
                 .SingleOrDefaultAsync();
         }
     }
