@@ -1,8 +1,7 @@
-using Hork_Api.Models.Entities;
+using Hork_Api.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Hork_Api.Models.ViewModels;
 using System.Linq;
 
 namespace Hork_Api.Repositories
@@ -13,12 +12,11 @@ namespace Hork_Api.Repositories
                 : base(context)
         { }
     
-        public async Task<ExerciseVM> GetById(int id) {
+        public async Task<Exercise> GetById(int id) {
             return await GetAll()
                 .Where(x => x.ExerciseId == id)
                 .Include(x => x.Workout)
                 .Include(x => x.ExerciseDetail)
-                .Select(x => new ExerciseVM(x))
                 .SingleOrDefaultAsync();
         }
     }

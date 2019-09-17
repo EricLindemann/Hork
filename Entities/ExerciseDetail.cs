@@ -3,7 +3,7 @@ using System;
 using Hork_Api.Helpers;
 using System.Collections.Generic;
 
-namespace Hork_Api.Models.Entities
+namespace Hork_Api.Entities
 {
     public class ExerciseDetail : IEntity, IAuditable
     {

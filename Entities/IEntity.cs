@@ -1,4 +1,4 @@
-namespace Hork_Api.Models.Entities
+namespace Hork_Api.Entities
 {
     public interface IEntity
     {

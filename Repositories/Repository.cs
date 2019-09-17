@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Hork_Api.Models.Entities;
+using Hork_Api.Entities;
 using System.Linq;
 using Hork_Api.Repositories;
 

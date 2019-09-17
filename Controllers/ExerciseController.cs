@@ -1,5 +1,5 @@
-using Hork_Api.Models.Entities;
-using Hork_Api.Models.ViewModels;
+using Hork_Api.Entities;
+using Hork_Api.Models;
 using Hork_Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hork_Api.Controllers
 {
-    [Route("api/Exercise")]
+    [Route("api/exercise")]
     [ApiController]
     public class ExerciseController : ControllerBase
     {
@@ -18,9 +18,9 @@ namespace Hork_Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ExerciseVM>> GetExercise(int id)
+        public async Task<ActionResult<ExerciseModel>> GetExercise(int id)
         {
-            var exerciseModel = await _exerciseRepository.GetById(id);
+            var exerciseModel = new ExerciseModel(await _exerciseRepository.GetById(id));
 
             if (exerciseModel == null)
             {

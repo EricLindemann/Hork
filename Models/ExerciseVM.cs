@@ -1,11 +1,11 @@
-using Hork_Api.Models.Entities;
+using Hork_Api.Entities;
 
-namespace Hork_Api.Models.ViewModels
+namespace Hork_Api.Models
 {
-    public class ExerciseVM
+    public class ExerciseModel
     {
-        public ExerciseVM() { }
-        public ExerciseVM(Exercise exercise) {
+        public ExerciseModel() { }
+        public ExerciseModel(Exercise exercise) {
             ExerciseId = exercise.ExerciseId;
             ExerciseDetailId = exercise.ExerciseDetailId;
             WorkoutId = exercise.WorkoutId;

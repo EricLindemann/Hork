@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using Hork_Api.Helpers;
 
-namespace Hork_Api.Models.Entities
+namespace Hork_Api.Entities
 {
     public class Exercise : IEntity, IAuditable
     {

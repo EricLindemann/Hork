@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hork_Api.Models.Entities;
+using Hork_Api.Entities;
 using Hork_Api.Repositories;
-using Hork_Api.Models.ViewModels;
+using Hork_Api.Models;
 
 namespace Hork_Api.Controllers
 {
@@ -21,22 +21,23 @@ namespace Hork_Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ExerciseDetailVM>>> GetExerciseDetails()
+        public async Task<ActionResult<IEnumerable<ExerciseDetailModel>>> GetExerciseDetails()
         {
-            return await _exerciseDetailRepository.GetExerciseDetails();
+            var exerciseDetails = await _exerciseDetailRepository.GetExerciseDetails();
+            return exerciseDetails.Select(x => new ExerciseDetailModel(x)).ToList();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ExerciseDetailVM>> GetExerciseDetail(int id)
+        public async Task<ActionResult<ExerciseDetailModel>> GetExerciseDetail(int id)
         {
-            var exerciseDetailVM = await _exerciseDetailRepository.GetById(id);
+            var exerciseDetailModel = new ExerciseDetailModel(await _exerciseDetailRepository.GetById(id));
 
-            if (exerciseDetailVM == null)
+            if (exerciseDetailModel == null)
             {
                 return NotFound();
             }
             
-            return exerciseDetailVM;
+            return exerciseDetailModel;
         }
 
         [HttpPost]

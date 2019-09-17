@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
-using Hork_Api.Models.Entities;
+using Hork_Api.Entities;
 using Hork_Api.Repositories;
 using Newtonsoft.Json;
 

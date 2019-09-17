@@ -5,7 +5,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;
 using Microsoft.EntityFrameworkCore.Proxies;
 using Hork_Api.Helpers;
 
-namespace Hork_Api.Models.Entities
+namespace Hork_Api.Entities
 {
     public class HorkContext : DbContext
     {
