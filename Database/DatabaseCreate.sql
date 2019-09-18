@@ -45,7 +45,15 @@ CREATE TABLE ExerciseSet
     UpdatedOn DateTime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     primary key (ExerciseSetId),
     foreign key (ExerciseId) REFERENCES Exercise(ExerciseId) );
-
+    
+CREATE TABLE UserProfile
+	(UserId Int(11) NOT NULL AUTO_INCREMENT,
+    Email VARCHAR(500) NOT NULL,
+    HashedPassword VARCHAR(100) NOT NULL,
+	CreatedOn DateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UpdatedOn DateTime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    primary key (UserId)
+    
 INSERT INTO ExerciseDetail values (1, 'Squat', null, 1, 1, CURDATE(), CURDATE());
 INSERT INTO Workout values (1, 'Legs?', CURDATE(), CURDATE(), CURDATE());
 INSERT INTO Exercise values (1, 1, 1, 1, CURDATE(), CURDATE());

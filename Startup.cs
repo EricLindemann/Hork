@@ -16,6 +16,7 @@ using Pomelo.EntityFrameworkCore.MySql;
 using Hork_Api.Entities;
 using Hork_Api.Repositories;
 using Newtonsoft.Json;
+using Hork_Api.Services;
 
 namespace Hork_Api
 {
@@ -41,8 +42,15 @@ namespace Hork_Api
                 options.SerializerSettings.ReferenceLoopHandling = 
                                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+
+            // Services
+            services.AddTransient<PasswordHasher, PasswordHasher>();
+            services.AddTransient<UserProfileService, UserProfileService>();
+
+            // Repositories
             services.AddTransient<ExerciseDetailRepository, ExerciseDetailRepository>();
             services.AddTransient<ExerciseRepository, ExerciseRepository>();
+            services.AddTransient<UserProfileRepository, UserProfileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

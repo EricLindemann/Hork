@@ -8,8 +8,8 @@ namespace Hork_Api.Entities
     public class Exercise : IEntity, IAuditable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ExerciseId { get;set; }
-        public int WorkoutId { get;set; }
+        public int ExerciseId { get; set; }
+        public int WorkoutId { get; set; }
         public int ExerciseDetailId { get; set; }
         public int OrderId { get; set; }
         public DateTime CreatedOn { get; set; }

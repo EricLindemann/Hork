@@ -29,6 +29,7 @@ namespace Hork_Api.Entities
             modelBuilder.Entity<ExerciseDetail>().UseTimestampedProperty();
             modelBuilder.Entity<Workout>().UseTimestampedProperty();
             modelBuilder.Entity<Exercise>().UseTimestampedProperty();
+            modelBuilder.Entity<UserProfile>().UseTimestampedProperty();
         }
 
         private MySqlConnectorAlias::MySql.Data.MySqlClient.MySqlConnection GetConnection() {
@@ -42,5 +43,6 @@ namespace Hork_Api.Entities
         public DbSet<ExerciseDetail> ExerciseDetails { get; set; }
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }
