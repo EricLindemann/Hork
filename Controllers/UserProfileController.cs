@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Hork_Api.Entities;
 using Hork_Api.Services;
 using Hork_Api.Models;
+using Hork_Api.Enums;
 
 namespace Hork_Api.Controllers
 {
@@ -21,9 +22,10 @@ namespace Hork_Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostUserProfile(UserProfileModel userProfileModel)
+        [Route("admin")]
+        public async Task<ActionResult> PostAdminUserProfile(UserProfileModel userProfileModel)
         {
-            await _userProfileService.Insert(userProfileModel.Email, userProfileModel.Password);
+            await _userProfileService.Insert(userProfileModel.Email, userProfileModel.Password, (int)RoleEnum.Administrator);
             return Ok();
         }
 

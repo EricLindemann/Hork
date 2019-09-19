@@ -1,6 +1,6 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System;
 using Hork_Api.Helpers;
 using System.Collections.Generic;
 
@@ -15,6 +15,7 @@ namespace Hork_Api.Entities
         public string HashedPassword { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
+        public virtual ICollection<UserInRole> UserInRoles { get; set; }
         
     }
 }

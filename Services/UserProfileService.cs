@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hork_Api.Entities;
 using Hork_Api.Repositories;
@@ -18,12 +20,18 @@ namespace Hork_Api.Services
             _userProfileRepository = userProfileRepository;
         }
 
-        public async Task Insert(string email, string password) {
+        public async Task Insert(string email, string password, int roleId) {
             var hashword = _passwordHasher.Hash(password);
-            await _userProfileRepository.Insert(new UserProfile {
+            var userProfile = new UserProfile {
                 Email = email,
-                HashedPassword = hashword
+                HashedPassword = hashword,
+                UserInRoles = new Collection<UserInRole>()
+            };
+            userProfile.UserInRoles.Add(new UserInRole {
+                RoleId = roleId
             });
+            
+            await this._userProfileRepository.Insert(userProfile);
         }
 
         public async Task<bool> ValidatePassword(UserProfileModel userProfileModel) {

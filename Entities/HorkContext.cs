@@ -25,11 +25,16 @@ namespace Hork_Api.Entities
                 // refs https://docs.microsoft.com/en-us/ef/core/modeling/relational/tables#conventions
                 modelBuilder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
             }
-            // TODO generalize this V            
+            // TODO generalize this? V        
+            // IAuditable Entites
             modelBuilder.Entity<ExerciseDetail>().UseTimestampedProperty();
             modelBuilder.Entity<Workout>().UseTimestampedProperty();
             modelBuilder.Entity<Exercise>().UseTimestampedProperty();
             modelBuilder.Entity<UserProfile>().UseTimestampedProperty();
+
+            // Composite Keys
+            modelBuilder.Entity<UserInRole>()
+                .HasKey(up => new { up.UserId, up.RoleId });
         }
 
         private MySqlConnectorAlias::MySql.Data.MySqlClient.MySqlConnection GetConnection() {
@@ -44,5 +49,6 @@ namespace Hork_Api.Entities
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserInRole> UserInRoles { get;set; }
     }
 }

@@ -52,7 +52,12 @@ CREATE TABLE UserProfile
     HashedPassword VARCHAR(100) NOT NULL,
 	CreatedOn DateTime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UpdatedOn DateTime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    primary key (UserId)
+    primary key (UserId));
+
+CREATE TABLE UserInRole
+	(UserId Int(11) NOT NULL,
+    RoleId Int(11) NOT NULL,
+    primary key(UserId, RoleId))
     
 INSERT INTO ExerciseDetail values (1, 'Squat', null, 1, 1, CURDATE(), CURDATE());
 INSERT INTO Workout values (1, 'Legs?', CURDATE(), CURDATE(), CURDATE());
@@ -65,4 +70,5 @@ SELECT * FROM ExerciseDetail;
 SELECT * FROM Workout;
 SELECT * FROM Exercise;
 SELECT * FROM ExerciseSet;
+SELECT * FROM UserProfile;
 
